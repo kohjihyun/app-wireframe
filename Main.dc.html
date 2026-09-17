@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#EFEEE9;font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:#1A1A18;-webkit-font-smoothing:antialiased}
+    a{color:#2F6BB0;text-decoration:none}a:hover{color:#1F4B80}
+    .wf{width:390px;background:#FCFCFA;border:1px solid #C9C9C2;display:flex;flex-direction:column;min-height:100%}
+    .tag{display:flex;gap:6px;align-items:baseline;padding:8px 14px;background:#1A1A18;color:#FCFCFA}
+    .tag b{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.04em}
+    .tag span{font-size:11.5px;font-weight:400;opacity:.78}
+    .tag i{margin-left:auto;font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;border:1px solid rgba(252,252,250,.45);padding:1px 5px}
+    .body{padding:0 0 4px;display:flex;flex-direction:column;flex-grow:1}
+    .pad{padding:0 18px;display:flex;flex-direction:column}
+    .bar{height:52px;display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid #E2E1DA}
+    .bar h4{margin:0;font-size:15px;font-weight:600;letter-spacing:-.01em}
+    .bar .rt{margin-left:auto;display:flex;gap:12px;align-items:center}
+    .ico{width:20px;height:20px;flex-shrink:0;display:block}
+    .ico.sm{width:16px;height:16px}
+    .badge{position:relative;display:flex}
+    .badge::after{content:'N';position:absolute;top:-3px;right:-4px;font-size:8px;font-family:'IBM Plex Mono',monospace;background:#2F6BB0;color:#fff;border-radius:8px;padding:0 3px;line-height:11px}
+    h2.t{margin:20px 0 6px;font-size:20px;font-weight:600;line-height:1.35;letter-spacing:-.02em}
+    p.d{margin:0 0 4px;font-size:13px;line-height:1.55;color:#6E6E68}
+    p.cap{margin:6px 0 0;font-size:11px;line-height:1.5;color:#8C8C85}
+    .fld{margin-top:14px;display:flex;flex-direction:column;gap:5px}
+    .fld label{font-size:11px;font-weight:500;color:#6E6E68;letter-spacing:.01em}
+    .fld label em{font-style:normal;color:#2F6BB0;margin-left:2px}
+    .ctl{height:48px;border:1px solid #C9C9C2;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:13.5px;color:#1A1A18;gap:8px}
+    .ctl.ph{color:#AFAFA7}
+    .ctl .rt{margin-left:auto;display:flex;align-items:center;gap:6px;color:#6E6E68;font-size:12px}
+    .row2{display:flex;gap:8px;align-items:flex-end}
+    .btn{height:52px;display:flex;align-items:center;justify-content:center;font-size:14.5px;font-weight:600;border:1px solid #1A1A18;background:#1A1A18;color:#FCFCFA;letter-spacing:-.01em}
+    .btn.sec{background:#fff;color:#1A1A18;border-color:#1A1A18}
+    .btn.gho{background:transparent;color:#6E6E68;border-color:#C9C9C2;font-weight:400}
+    .btn.acc{background:#2F6BB0;border-color:#2F6BB0;color:#fff}
+    .btn.dis{background:#E2E1DA;border-color:#E2E1DA;color:#AFAFA7}
+    .btn.sml{height:36px;font-size:12px;font-weight:500;padding:0 12px}
+    .btnrow{display:flex;gap:8px;margin-top:12px}
+    .btnrow>.btn{flex-grow:1;flex-basis:0}
+    .box{border:1px dashed #B9B9B1;background:#F4F3EE;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;color:#9A9A92;font-size:11.5px;text-align:center;padding:8px}
+    .box b{font-weight:500;font-size:12px;color:#7E7E76}
+    .crd{border:1px solid #D8D7D0;background:#fff;padding:14px;display:flex;flex-direction:column;gap:7px}
+    .crd .ch{display:flex;align-items:baseline;gap:8px}
+    .crd .ch b{font-size:13px;font-weight:600}
+    .crd .ch span{margin-left:auto;font-size:12px;color:#6E6E68;font-family:'IBM Plex Mono',monospace}
+    .crd .cl{font-size:12.5px;color:#4A4A45;line-height:1.5;display:flex;gap:8px}
+    .crd .cl b{font-weight:500;color:#1A1A18;margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px}
+    .lst{display:flex;flex-direction:column;border-top:1px solid #E2E1DA}
+    .li{min-height:56px;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #E2E1DA}
+    .li .tx{display:flex;flex-direction:column;gap:3px;min-width:0;flex-grow:1}
+    .li .tx b{font-size:13.5px;font-weight:500;letter-spacing:-.01em}
+    .li .tx span{font-size:11.5px;color:#8C8C85}
+    .li .rv{margin-left:auto;text-align:right;display:flex;flex-direction:column;gap:3px;flex-shrink:0}
+    .li .rv b{font-size:13.5px;font-weight:600;font-family:'IBM Plex Mono',monospace}
+    .li .rv span{font-size:11px;color:#8C8C85;font-family:'IBM Plex Mono',monospace}
+    .li .thm{width:44px;height:28px;border:1px solid #C9C9C2;background:#F4F3EE;flex-shrink:0}
+    .tabs{display:flex;border-bottom:1px solid #C9C9C2}
+    .tabs .tb{flex-grow:1;flex-basis:0;height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#8C8C85;border-bottom:2px solid transparent;margin-bottom:-1px}
+    .tabs .tb.on{color:#1A1A18;font-weight:600;border-bottom-color:#1A1A18}
+    .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+    .chip{border:1px solid #C9C9C2;padding:8px 12px;font-size:12px;color:#4A4A45;background:#fff}
+    .chip.on{border-color:#1A1A18;background:#1A1A18;color:#FCFCFA;font-weight:500}
+    .chk{display:flex;align-items:center;gap:10px;min-height:44px;font-size:13px;border-bottom:1px solid #EDECE5}
+    .chk .bx{width:20px;height:20px;border:1.5px solid #8C8C85;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+    .chk .bx.on{border-color:#1A1A18;background:#1A1A18}
+    .chk em{font-style:normal;font-size:11px;color:#2F6BB0;font-weight:500}
+    .chk .rt{margin-left:auto;color:#AFAFA7}
+    .rdo{display:flex;align-items:center;gap:10px;min-height:46px;font-size:13.5px}
+    .rdo .dot{width:18px;height:18px;border-radius:50%;border:1.5px solid #8C8C85;flex-shrink:0}
+    .rdo .dot.on{border:5px solid #1A1A18}
+    .tg{display:flex;align-items:center;min-height:52px;font-size:13.5px;border-bottom:1px solid #EDECE5;gap:10px}
+    .tg .sw{margin-left:auto;width:40px;height:22px;border-radius:11px;background:#D8D7D0;position:relative;flex-shrink:0}
+    .tg .sw.on{background:#1A1A18}
+    .tg .sw::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff}
+    .tg .sw.on::after{left:20px}
+    .tg .sb{font-size:11px;color:#8C8C85;display:block;margin-top:2px}
+    .kp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#E2E1DA;border-top:1px solid #E2E1DA;margin-top:14px}
+    .kp div{height:56px;background:#F7F6F2;display:flex;align-items:center;justify-content:center;font-size:19px;font-family:'IBM Plex Mono',monospace}
+    .ptn{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding:26px 44px;justify-items:center}
+    .ptn i{width:22px;height:22px;border-radius:50%;border:1.5px solid #B9B9B1;display:block}
+    .ptn i.on{border-color:#2F6BB0;background:#2F6BB0}
+    .ptn i.err{border-color:#B0402F;background:#B0402F}
+    .pin{display:flex;gap:14px;justify-content:center;padding:22px 0}
+    .pin i{width:14px;height:14px;border-radius:50%;border:1.5px solid #B9B9B1;display:block}
+    .pin i.on{background:#1A1A18;border-color:#1A1A18}
+    .amt{border:1px solid #D8D7D0;background:#fff;padding:16px;display:flex;flex-direction:column;gap:6px}
+    .amt span{font-size:11px;color:#6E6E68}
+    .amt b{font-size:26px;font-weight:600;font-family:'IBM Plex Mono',monospace;letter-spacing:-.02em;display:flex;align-items:baseline;gap:6px}
+    .amt b em{font-style:normal;font-size:14px;font-weight:400;color:#6E6E68}
+    .kv{display:flex;flex-direction:column;gap:2px}
+    .kvr{display:flex;align-items:baseline;gap:12px;min-height:34px;font-size:12.5px;border-bottom:1px solid #EDECE5;padding:5px 0}
+    .kvr span{color:#8C8C85;flex-shrink:0;min-width:84px}
+    .kvr b{margin-left:auto;text-align:right;font-weight:500;font-family:'IBM Plex Mono',monospace;font-size:12px;word-break:break-all}
+    .div{height:1px;background:#E2E1DA;margin:16px 0}
+    .divx{height:8px;background:#EFEEE9;margin:18px 0;border-top:1px solid #E2E1DA;border-bottom:1px solid #E2E1DA}
+    .bnr{border:1px solid #C9C9C2;background:#F4F3EE;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.55;color:#4A4A45}
+    .bnr.warn{border-color:#C9A24A;background:#FAF5E8}
+    .bnr.err{border-color:#C08477;background:#FAF0ED}
+    .nav{margin-top:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #C9C9C2;background:#fff}
+    .nav div{height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;letter-spacing:-.03em;color:#9A9A92;white-space:nowrap}
+    .nav div.on{color:#1A1A18;font-weight:600}
+    .ovl{margin:14px 18px;border:1px solid #1A1A18;background:#fff;box-shadow:6px 6px 0 rgba(26,26,24,.10)}
+    .ovl .oh{padding:16px 16px 0;font-size:14px;font-weight:600}
+    .ovl .ob{padding:10px 16px 16px;font-size:12.5px;line-height:1.6;color:#4A4A45;white-space:pre-line}
+    .ovl .of{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #E2E1DA}
+    .ovl .of.one{grid-template-columns:1fr}
+    .ovl .of div{height:48px;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:500;border-left:1px solid #E2E1DA}
+    .ovl .of div:first-child{border-left:0}
+    .ovl .of div.mut{color:#8C8C85;font-weight:400}
+    .sheet{margin-top:14px;border-top:2px solid #1A1A18;background:#fff;padding:16px 18px;display:flex;flex-direction:column}
+    .sheet>h5{margin:0 0 4px;font-size:14px;font-weight:600}
+    .note{margin-top:auto;border-top:1px solid #C9C9C2;background:#F4F3EE;padding:12px 16px 14px;display:flex;flex-direction:column;gap:6px}
+    .note h6{margin:0 0 2px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.1em;color:#8C8C85}
+    .note p{margin:0;font-size:11px;line-height:1.55;color:#4A4A45;display:flex;gap:6px}
+    .note p b{font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:500;color:#2F6BB0;flex-shrink:0;padding-top:1px;letter-spacing:.04em}
+    .note p b.x{color:#B0402F}
+    .mapwrap{padding:36px 40px;background:#FCFCFA;width:1180px}
+    .mapwrap h1{margin:0 0 6px;font-size:34px;font-weight:600;letter-spacing:-.03em}
+    .mapwrap .sub{margin:0 0 26px;font-size:13.5px;color:#6E6E68;line-height:1.6}
+    .mapgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+    .mapcol{border-top:2px solid #1A1A18;padding-top:10px;display:flex;flex-direction:column;gap:5px}
+    .mapcol h3{margin:0 0 4px;font-size:13px;font-weight:600;letter-spacing:-.01em}
+    .mapcol .mi{display:flex;gap:7px;font-size:11px;line-height:1.5;color:#4A4A45}
+    .mapcol .mi b{font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:500;color:#8C8C85;flex-shrink:0;padding-top:1px;min-width:38px}
+    .mapcol .mi b.n{color:#2F6BB0}
+    .lg{display:flex;gap:26px;margin-top:30px;padding-top:16px;border-top:1px solid #E2E1DA;font-size:11.5px;color:#6E6E68;flex-wrap:wrap}
+    .lg span{display:flex;gap:6px;align-items:center}
+    .lg i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid #C9C9C2;padding:1px 5px}
+</style>
+</helmet>
+<div class="mapwrap"><h1>송금 + 선불 통합 앱 — 화면 와이어프레임</h1><p class="sub">「송금선불 통합 (정밀) 2026. 9. 16. 기능명세」의 42개 화면(SC-001~042)에, 명세서에서 이동 대상으로만 언급되고 정의가 없는 화면과 앱 서비스를 완성하는 데 필요한 화면을 더해 총 98개 화면으로 구성했습니다.<br>화면 ID는 하나의 SC- 체계로 통합했습니다. <b>SC-001~SC-042</b>는 기능명세서의 번호를 그대로 유지하고, 보완한 화면은 <b>SC-043</b>부터 플로우 순서대로 이어서 부여했습니다.<br>상단 페이지 메뉴에서 플로우별로 이동할 수 있습니다. 각 화면 하단의 ACTION / EXCEPTION 블록에 명세서의 동작·예외를 그대로 옮겨 두었습니다.</p><div class="mapgrid"><div class="mapcol"><h3>1. 가입 · 로그인 · 인증</h3><div class="mi"><b class="n">SC-043</b>스플래시</div><div class="mi"><b class="n">SC-044</b>온보딩 인트로 (3페이지)</div><div class="mi"><b>SC-001</b>홈화면_로그인 전</div><div class="mi"><b>SC-003</b>패턴 로그인</div><div class="mi"><b class="n">SC-045</b>패턴 오입력 5회 초과 (잠금)</div><div class="mi"><b>SC-004</b>이메일 로그인</div><div class="mi"><b>SC-005</b>비밀번호 재설정 (이메일 인증 요청)</div><div class="mi"><b class="n">SC-046</b>비밀번호 재설정 — 인증코드 입력</div><div class="mi"><b class="n">SC-047</b>새 비밀번호 설정</div><div class="mi"><b>SC-006</b>유입 설문</div><div class="mi"><b>SC-007</b>약관 동의 (신규 회원)</div><div class="mi"><b class="n">SC-048</b>약관 전문 보기</div><div class="mi"><b>SC-008</b>휴대폰 본인인증 정보 입력</div><div class="mi"><b>SC-009</b>휴대폰 인증번호 입력</div><div class="mi"><b>SC-010</b>회원정보 입력 (주소)</div><div class="mi"><b class="n">SC-049</b>주소 검색 모달</div><div class="mi"><b>SC-011</b>기본정보 입력</div><div class="mi"><b>SC-012</b>eKYC 진행 (유스비)</div><div class="mi"><b class="n">SC-050</b>eKYC — 신분증 촬영</div><div class="mi"><b class="n">SC-051</b>eKYC — 셀피 촬영</div><div class="mi"><b class="n">SC-052</b>eKYC 결과 (심사중 / 실패)</div><div class="mi"><b>SC-013</b>계좌 1원 인증</div><div class="mi"><b>SC-014</b>패턴 설정</div><div class="mi"><b>SC-015</b>패턴 설정 (재입력 확인)</div><div class="mi"><b>SC-016</b>PIN 설정</div><div class="mi"><b>SC-017</b>PIN 설정 재확인</div><div class="mi"><b>SC-018</b>가입 완료</div><div class="mi"><b class="n">SC-053</b>기가입 회원 통합 약관 재동의</div></div><div class="mapcol"><h3>2. 홈 · 카드 관리</h3><div class="mi"><b>SC-002</b>홈화면_로그인 후</div><div class="mi"><b class="n">SC-054</b>알림</div><div class="mi"><b class="n">SC-055</b>고객센터</div><div class="mi"><b class="n">SC-056</b>1:1 문의 작성</div><div class="mi"><b class="n">SC-057</b>FAQ</div><div class="mi"><b>SC-019</b>카드 관리</div><div class="mi"><b>SC-020</b>카드 상세</div><div class="mi"><b>SC-021</b>카드 상세 &gt; 상세 보기</div><div class="mi"><b>SC-022</b>카드 상세 &gt; 설정</div><div class="mi"><b>SC-023</b>카드 설정 &gt; PIN 번호 보기</div><div class="mi"><b class="n">SC-058</b>카드 Freeze 확인 모달</div><div class="mi"><b>SC-024</b>실물카드 등록</div><div class="mi"><b>SC-025</b>실물카드 등록 &gt; 정보 확인</div><div class="mi"><b>SC-026</b>카드명 입력</div><div class="mi"><b>SC-027</b>실물카드 등록 완료</div><div class="mi"><b class="n">SC-059</b>카드 등록 해제 확인</div><div class="mi"><b class="n">SC-060</b>실물카드 신청</div></div><div class="mapcol"><h3>3. 충전 · 결제</h3><div class="mi"><b>SC-028</b>충전 화면 (수단 선택)</div><div class="mi"><b class="n">SC-061</b>충전 금액 입력</div><div class="mi"><b class="n">SC-062</b>카드 충전 결제 (해외 / 국내카드)</div><div class="mi"><b class="n">SC-063</b>가상계좌 입금 안내</div><div class="mi"><b class="n">SC-064</b>편의점 / ATM 현금충전 안내</div><div class="mi"><b class="n">SC-065</b>충전 완료</div><div class="mi"><b class="n">SC-066</b>잔액이전 (월렛 ↔ 카드)</div><div class="mi"><b>SC-041</b>잔액이전 (카드 ↔ 카드)</div><div class="mi"><b class="n">SC-067</b>잔액이전 — 직접 입력 키패드</div><div class="mi"><b>SC-042</b>잔액이전 완료</div><div class="mi"><b>SC-029</b>QR 스캔</div><div class="mi"><b>SC-030</b>결제 금액 입력</div><div class="mi"><b>SC-031</b>결제 금액 확인 및 결제 카드 선택</div><div class="mi"><b>SC-032</b>PIN 입력</div><div class="mi"><b class="n">SC-068</b>PIN 불일치 / 5회 초과</div><div class="mi"><b>SC-034</b>결제 완료</div><div class="mi"><b>SC-033</b>결제 실패</div><div class="mi"><b class="n">SC-069</b>결제 취소 / 환불 요청</div></div><div class="mapcol"><h3>4. 해외송금 · 거래내역 · 설정</h3><div class="mi"><b class="n">SC-070</b>송금 보내기 — 국가·통화·금액</div><div class="mi"><b class="n">SC-071</b>수취인 선택</div><div class="mi"><b class="n">SC-072</b>수취인 신규 등록</div><div class="mi"><b class="n">SC-073</b>송금 정보 확인</div><div class="mi"><b class="n">SC-074</b>송금 PIN 인증</div><div class="mi"><b class="n">SC-075</b>송금 접수 완료</div><div class="mi"><b class="n">SC-076</b>송금 상세 내역</div><div class="mi"><b class="n">SC-077</b>QR 송금받기</div><div class="mi"><b>SC-035</b>거래내역 — 해외송금</div><div class="mi"><b class="n">SC-078</b>거래내역 — 받은 내역</div><div class="mi"><b class="n">SC-079</b>거래내역 — 디벙크 머니</div><div class="mi"><b class="n">SC-080</b>기간 · 유형 필터 설정</div><div class="mi"><b>SC-036</b>거래내역 — 선불카드</div><div class="mi"><b class="n">SC-081</b>선불카드 거래 상세</div><div class="mi"><b>SC-037</b>MY</div><div class="mi"><b>SC-038</b>내 정보 관리</div><div class="mi"><b class="n">SC-082</b>휴대폰 번호 수정</div><div class="mi"><b class="n">SC-083</b>주소 수정</div><div class="mi"><b class="n">SC-084</b>해외송금 잔여한도 조회</div><div class="mi"><b class="n">SC-085</b>인증 및 보안</div><div class="mi"><b class="n">SC-086</b>계좌 관리</div><div class="mi"><b class="n">SC-087</b>계좌 추가 (1원 인증)</div><div class="mi"><b class="n">SC-088</b>알림 설정</div><div class="mi"><b class="n">SC-089</b>언어 설정</div><div class="mi"><b class="n">SC-090</b>공지사항</div><div class="mi"><b class="n">SC-091</b>약관 및 개인정보 처리 동의</div><div class="mi"><b class="n">SC-092</b>ABOUT US</div><div class="mi"><b>SC-040</b>추천하기</div><div class="mi"><b>SC-039</b>회원 탈퇴</div><div class="mi"><b class="n">SC-093</b>탈퇴 확인 / 탈퇴 불가 팝업</div><div class="mi"><b class="n">SC-094</b>네트워크 오류 / 서버 점검</div><div class="mi"><b class="n">SC-095</b>앱 업데이트 안내</div><div class="mi"><b class="n">SC-096</b>권한 요청 (카메라 · 알림)</div><div class="mi"><b class="n">SC-097</b>공통 로딩 / 처리중</div><div class="mi"><b class="n">SC-098</b>공통 얼럿 · 바텀시트 패턴</div></div></div><div class="lg"><span><i>명세</i> 기능명세서에 정의된 화면</span><span><i>참조</i> 명세서에 이동 대상으로만 언급 — 신규 정의 필요</span><span><i>추가</i> 앱 완성을 위해 보완한 화면 (SC-043~SC-098)</span><span>파란색 ID · 명세서에 없던 화면</span></div></div>
+</x-dc>
+</body>
+</html>
